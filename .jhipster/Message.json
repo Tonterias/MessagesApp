@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "messageText",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text",
+            "fieldValidateRules": [
+                "minbytes",
+                "maxbytes",
+                "required"
+            ],
+            "fieldValidateRulesMinbytes": 3,
+            "fieldValidateRulesMaxbytes": 5000
+        }
+    ],
+    "changelogDate": "20180522092819",
+    "entityTableName": "message",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false
+}

@@ -1,0 +1,13 @@
+
+entity Message {
+    messageText TextBlob minbytes(3) maxbytes(5000) required
+}
+
+// DTO for all
+dto * with mapstruct
+
+// Set pagination options
+paginate * with infinite-scroll
+
+// Set service options to all except few
+service all with serviceImpl

@@ -56,13 +56,13 @@ spring:
 
         # see https://developers.facebook.com/docs/facebook-login/v2.2
         facebook:
-            client-id: xxx
-            client-secret: xxx
+            client-id: 184053739091293
+            client-secret: 981a01952cd6909144760a5d0eff8242
 
         # see https://apps.twitter.com/app/
         twitter:
-            client-id: xxx
-            client-secret: xxx
+            client-id: TtiTQyIlPy6uEKYAgJX8F0j3p
+            client-secret: rUdwyaeUhzlrdoqi8U7cbqUAIzDbpgIsaF8ue1DK6wuVU3rQYh
 
         # jhipster-needle-add-social-configuration
 security:
