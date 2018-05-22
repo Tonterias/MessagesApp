@@ -1,0 +1,19 @@
+version: '2'
+services:
+    test3elasticsocial-app:
+        image: test3elasticsocial
+        environment:
+            - SPRING_PROFILES_ACTIVE=prod,swagger
+            - SPRING_DATASOURCE_URL=jdbc:mysql://test3elasticsocial-mysql:3306/test3elasticsocial?useUnicode=true&characterEncoding=utf8&useSSL=false
+            - JHIPSTER_SLEEP=10 # gives time for the database to boot before the application
+            - SPRING_DATA_ELASTICSEARCH_CLUSTER_NODES=test3elasticsocial-elasticsearch:9300
+        ports:
+            - 8080:8080
+    test3elasticsocial-mysql:
+        extends:
+            file: mysql.yml
+            service: test3elasticsocial-mysql
+    test3elasticsocial-elasticsearch:
+        extends:
+            file: elasticsearch.yml
+            service: test3elasticsocial-elasticsearch
