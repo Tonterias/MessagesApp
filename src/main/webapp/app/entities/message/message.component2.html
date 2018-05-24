@@ -37,7 +37,7 @@
             <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
             <tr *ngFor="let message of messages ;trackBy: trackId">
                 <td><a [routerLink]="['../message', message.id ]">{{message.id}}</a></td>
-                <td [innerHTML]="message.messageText"></td>
+                <td>{{message.messageText}}</td>
                 <td class="text-right">
                     <div class="btn-group flex-btn-group-container">
                         <button type="submit"

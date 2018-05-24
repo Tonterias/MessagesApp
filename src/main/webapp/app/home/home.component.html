@@ -23,7 +23,7 @@
         </div>
 
         <p>
-            If you have any question on JHipster:
+            If you have any question on JHipster:zzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzzz
         </p>
 
         <ul>
@@ -37,5 +37,18 @@
         <p>
             <span>If you like JHipster, don't forget to give us a star on</span> <a href="https://github.com/jhipster/generator-jhipster" target="_blank" rel="noopener">GitHub</a>!
         </p>
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-3">
+    </div>
+    <div class="col-md-9">
+    	<h1>Esta parte es la nueva... veremos</h1>
+    	<div *ngFor="let message of messages">
+    		<h2>{{message.id}}</h2>
+            <p [innerHTML]="message.messageText"></p>
+    	</div>
     </div>
 </div>
