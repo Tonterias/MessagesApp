@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Message } from '../entities/message/message.model';
 import { MessageService } from '../entities/message/message.service';
 // import { Message, MessageService } from '../entities/message/message.model';
@@ -21,7 +21,7 @@ import { HttpResponse, HttpErrorResponse } from '@angular/common/http';
     ]
 
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
     messages: Message[];
     currentAccount: any;
     eventSubscriber: Subscription;
@@ -87,13 +87,37 @@ export class HomeComponent implements OnInit {
         this.loadAll();
     }
 
-//    ngOnInit() {
-//        this.loadAll();
-//        this.principal.identity().then((account) => {
-//            this.currentAccount = account;
-//        });
-//        this.registerChangeInMessages();
-//    }
+    loadPage(page) {
+        this.page = page;
+        this.loadAll();
+    }
+
+    clear() {
+        this.messages = [];
+        this.links = {
+            last: 0
+        };
+        this.page = 0;
+        this.predicate = 'id';
+        this.reverse = true;
+        this.currentSearch = '';
+        this.loadAll();
+    }
+
+    search(query) {
+        if (!query) {
+            return this.clear();
+        }
+        this.messages = [];
+        this.links = {
+            last: 0
+        };
+        this.page = 0;
+        this.predicate = '_score';
+        this.reverse = false;
+        this.currentSearch = query;
+        this.loadAll();
+    }
 
     registerChangeInMessages() {
         this.eventSubscriber = this.eventManager.subscribe('messageListModification', (response) => this.reset());
@@ -119,13 +143,6 @@ export class HomeComponent implements OnInit {
         this.jhiAlertService.error(error.message, null, null);
     }
 
-//    constructor(
-//        private principal: Principal,
-//        private loginModalService: LoginModalService,
-//        private eventManager: JhiEventManager
-//    ) {
-//    }
-//
     ngOnInit() {
         this.loadAll();
         this.principal.identity().then((account) => {
@@ -133,6 +150,22 @@ export class HomeComponent implements OnInit {
         });
         this.registerChangeInMessages();
         this.registerAuthenticationSuccess();
+    }
+
+    ngOnDestroy() {
+        this.eventManager.destroy(this.eventSubscriber);
+    }
+
+    trackId(index: number, item: Message) {
+        return item.id;
+    }
+
+    byteSize(field) {
+        return this.dataUtils.byteSize(field);
+    }
+
+    openFile(contentType, field) {
+        return this.dataUtils.openFile(contentType, field);
     }
 
     registerAuthenticationSuccess() {
